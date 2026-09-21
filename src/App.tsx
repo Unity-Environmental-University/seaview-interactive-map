@@ -6,7 +6,6 @@ import {
   useRef,
   useState,
 } from 'react'
-import barnIcon from './assets/barn-svgrepo-com_blue.svg'
 import seaviewMap from './assets/Seaview Map Layers.svg?raw'
 import './App.css'
 
@@ -28,7 +27,7 @@ const landmarks: Landmark[] = [
     name: 'Hog Farm',
     description:
       'A working farm area on the northwest side of Seaview, surrounded by open rural land.',
-    icon: barnIcon,
+    icon: null,
     svgId: 'Hog Farm Marker',
   },
   {
