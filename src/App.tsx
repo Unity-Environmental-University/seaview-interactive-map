@@ -306,13 +306,15 @@ function App() {
 
           <aside className="landmark-panel" aria-live="polite">
             <p className="panel-label">Selected Landmark</p>
-            <h2 className="landmark-title">
-              {selectedLandmark.icon ? (
-                <img src={selectedLandmark.icon} alt="" aria-hidden="true" />
-              ) : null}
-              <span>{selectedLandmark.name}</span>
-            </h2>
-            <p>{selectedLandmark.description}</p>
+            <div key={selectedLandmark.id} className="landmark-content">
+              <h2 className="landmark-title">
+                {selectedLandmark.icon ? (
+                  <img src={selectedLandmark.icon} alt="" aria-hidden="true" />
+                ) : null}
+                <span>{selectedLandmark.name}</span>
+              </h2>
+              <p>{selectedLandmark.description}</p>
+            </div>
           </aside>
         </div>
       </section>
