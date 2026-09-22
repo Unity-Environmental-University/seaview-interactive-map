@@ -51,16 +51,14 @@
 }
 
 #root {
-  width: min(100%, 1440px);
-  min-height: 100svh;
-  width: 1126px;
+  width: 100vw;
+  min-height: 100vh;
   max-width: 100%;
   margin: 0 auto;
   border-inline: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-
 }
 
 body {
