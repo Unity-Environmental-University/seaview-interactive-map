@@ -4,4 +4,5 @@ export type Landmark = {
   description: string
   icon: string | null
   svgId: string
+  kind?: 'landmark' | 'persona'
 }
