@@ -1,4 +1,5 @@
 import type { Landmark } from '../types/landmark'
+import { personas } from './personas'
 
 const landmarks: Landmark[] = [
   {
@@ -83,7 +84,9 @@ const landmarks: Landmark[] = [
   },
 ]
 
-const landmarksBySvgId = new Map(landmarks.map((landmark) => [landmark.svgId, landmark]))
+const landmarksBySvgId = new Map(
+  [...landmarks, ...personas].map((landmark) => [landmark.svgId, landmark]),
+)
 
 export function getInitialLandmark(): Landmark {
   return landmarks[0]
