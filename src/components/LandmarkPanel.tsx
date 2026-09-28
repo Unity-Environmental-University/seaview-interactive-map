@@ -7,7 +7,9 @@ type LandmarkPanelProps = {
 export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
   return (
     <aside className="landmark-panel" aria-live="polite">
-      <p className="panel-label">Selected Landmark</p>
+      <p className="panel-label">
+        {landmark.kind === 'persona' ? 'Selected Persona' : 'Selected Landmark'}
+      </p>
       <div key={landmark.id} className="landmark-content">
         <h2 className="landmark-title">
           {landmark.icon ? (
