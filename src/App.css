@@ -177,8 +177,11 @@ button {
   transition: filter 150ms ease;
 }
 
-.map-art [data-landmark-id][role="button"]:hover,
-.map-art [data-landmark-id][aria-pressed="true"] {
+.map-art [data-landmark-id]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.map-art [data-landmark-id][role="button"]:hover {
   filter: drop-shadow(0 0 12px #f68f40);
 }
 
