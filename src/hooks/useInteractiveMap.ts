@@ -26,7 +26,11 @@ function getMarkerLabel(target: EventTarget) {
   if (!(target instanceof Element)) return null
   const marker = target.closest('[data-landmark-id]')
   const landmark = marker ? getLandmark(marker) : undefined
-  const markerBounds = marker?.getBoundingClientRect()
+  // Persona groups include invisible, unclipped artwork beyond the visible box.
+  const labelAnchor = landmark?.kind === 'persona'
+    ? marker?.querySelector(':scope > rect') ?? marker
+    : marker
+  const markerBounds = labelAnchor?.getBoundingClientRect()
   const mapBounds = marker?.closest('.map-art')?.getBoundingClientRect()
   if (!landmark || !markerBounds || !mapBounds?.width || !mapBounds.height) return null
 
