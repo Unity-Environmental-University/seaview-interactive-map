@@ -101,12 +101,22 @@ button {
 }
 
 .map-layout {
+  --panel-width: 450px;
+  --layout-gap: 18px;
+  container-type: size;
   min-height: 0;
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) var(--panel-width);
   grid-template-rows: minmax(0, 1fr);
-  gap: 18px;
+  gap: var(--layout-gap);
+}
+
+.map-frame,
+.landmark-panel {
+  height: min(100cqh, calc((100cqw - var(--panel-width) - var(--layout-gap)) * 3145.5 / 4233));
+  align-self: center;
+  box-sizing: border-box;
 }
 
 .map-frame {
@@ -200,7 +210,8 @@ button {
 }
 
 .landmark-panel {
-  align-self: stretch;
+  display: flex;
+  flex-direction: column;
   min-height: 0;
   min-width: 0;
   padding: 22px;
@@ -208,7 +219,11 @@ button {
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 18px 50px rgba(28, 52, 43, 0.1);
-  overflow-y: auto;
+}
+
+.landmark-panel > .panel-label,
+.landmark-title {
+  flex-shrink: 0;
 }
 
 .landmark-panel h2 {
@@ -219,7 +234,23 @@ button {
 }
 
 .landmark-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   animation: landmark-slide-in 350ms ease-out both;
+}
+
+.landmark-description {
+  min-height: 0;
+  overflow-y: scroll;
+  scrollbar-color: red orange;
+  scrollbar-width: thin;
+}
+
+.landmark-description:focus-visible {
+  outline: 3px solid rgba(243, 143, 64, 0.62);
+  outline-offset: 3px;
 }
 
 @keyframes landmark-slide-in {
@@ -284,7 +315,40 @@ button {
 
   .map-layout {
     display: grid;
-    grid-template-rows: minmax(0, 3fr) minmax(0, 2fr);
+    grid-template-rows:
+      minmax(0, min(calc(100cqw * 3145.5 / 4233 / 2), calc((100cqh - var(--layout-gap)) * 0.6)))
+      minmax(0, 1fr);
+  }
+
+  .map-frame,
+  .landmark-panel {
+    height: 100%;
+  }
+
+  .map-viewport {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+
+  .map-stage {
+    position: relative;
+    inset: auto;
+    height: auto;
+    aspect-ratio: 4233 / 3145.5;
+    transform-origin: top center;
+  }
+
+  .map-art {
+    position: absolute;
+    inset: 0;
+  }
+
+  .map-viewport,
+  .map-art {
+    touch-action: pan-y;
   }
 
   .landmark-panel {
