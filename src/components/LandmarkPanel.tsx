@@ -17,7 +17,9 @@ export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
           ) : null}
           <span>{landmark.name}</span>
         </h2>
-        <p>{landmark.description}</p>
+        <p className="landmark-description" tabIndex={0}>
+          {landmark.description}
+        </p>
       </div>
     </aside>
   )
