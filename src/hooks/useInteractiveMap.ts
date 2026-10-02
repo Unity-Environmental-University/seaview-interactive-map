@@ -90,11 +90,15 @@ export function useInteractiveMap() {
   }
 
   const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
+    if (window.matchMedia('(max-width: 920px)').matches) return
     event.preventDefault()
     zoomBy(event.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP)
   }
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'touch' && window.matchMedia('(max-width: 920px)').matches) {
+      return
+    }
     if (zoom === MIN_ZOOM) {
       return
     }
