@@ -18,25 +18,27 @@ export function MapViewport({
   viewportHandlers, markerHandlers,
 }: MapViewportProps) {
   return (
-    <div
-      className={isDraggable ? 'map-viewport is-draggable' : 'map-viewport'}
-      {...viewportHandlers}
-    >
+    <div className="map-frame">
       <div
-        className="map-stage"
-        style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+        className={isDraggable ? 'map-viewport is-draggable' : 'map-viewport'}
+        {...viewportHandlers}
       >
         <div
-          ref={mapRef}
-          className="map-art"
-          {...markerHandlers}
-          dangerouslySetInnerHTML={mapMarkup}
-        />
-        {activeLabel && (
-          <div className="landmark-label" style={activeLabel.position} aria-hidden="true">
-            {activeLabel.name}
-          </div>
-        )}
+          className="map-stage"
+          style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+        >
+          <div
+            ref={mapRef}
+            className="map-art"
+            {...markerHandlers}
+            dangerouslySetInnerHTML={mapMarkup}
+          />
+          {activeLabel && (
+            <div className="landmark-label" style={activeLabel.position} aria-hidden="true">
+              {activeLabel.name}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
