@@ -1,12 +1,13 @@
 import type { Landmark } from '../types/landmark'
+import abbyPortrait from '../assets/Seaview_AIPs-Abby.svg'
 
 // Fictional draft biographies; replace with the final persona text when available.
 const biographies = [
   {
     name: 'Abby',
     description:
-      'Abby is a Seaview resident who enjoys gardening and sharing homegrown food with neighbors. Abby hopes to help more families find space to grow fresh produce.',
-    personaIcon: null,
+      'Abbie, a college-educated white woman, recently inherited her family’s hog farm and is determined to transition from a CAFO model to a more sustainable, ethical approach. Balancing her environmental goals and animal welfare concerns with the need to remain profitable, she wants to change her business model by focusing on local sales and diversifying products, but isn’t quite sure how to. Abbie has a professional relationship with Micah, who also has a farming background, but she is wary of Sully, who has publicly criticized hog farming.',
+    personaIcon: abbyPortrait,
   },
   {
     name: 'Nevaeh',
@@ -58,11 +59,12 @@ const biographies = [
   },
 ]
 
-export const personas: Landmark[] = biographies.map(({ name, description }) => ({
+export const personas: Landmark[] = biographies.map(({ name, description, personaIcon }) => ({
   id: name,
   name,
   description,
   icon: null,
+  personaIcon,
   svgId: name,
   kind: 'persona',
 }))
