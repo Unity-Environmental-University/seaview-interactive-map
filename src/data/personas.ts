@@ -6,7 +6,7 @@ const biographies = [
   {
     name: 'Abby',
     description:
-      'Abbie, a college-educated white woman, recently inherited her family’s hog farm and is determined to transition from a CAFO model to a more sustainable, ethical approach. Balancing her environmental goals and animal welfare concerns with the need to remain profitable, she wants to change her business model by focusing on local sales and diversifying products, but isn’t quite sure how to. Abbie has a professional relationship with Micah, who also has a farming background, but she is wary of Sully, who has publicly criticized hog farming.',
+      'Abby, a college-educated white woman, recently inherited her family’s hog farm and is determined to transition from a CAFO model to a more sustainable, ethical approach. Balancing her environmental goals and animal welfare concerns with the need to remain profitable, she wants to change her business model by focusing on local sales and diversifying products, but isn’t quite sure how to. Abbie has a professional relationship with Micah, who also has a farming background, but she is wary of Sully, who has publicly criticized hog farming.',
     personaIcon: abbyPortrait,
   },
   {
