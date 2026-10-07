@@ -11,6 +11,13 @@ export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
         {landmark.kind === 'persona' ? 'Selected Persona' : 'Selected Landmark'}
       </p>
       <div key={landmark.id} className="landmark-content">
+        {landmark.kind === 'persona' && landmark.personaIcon ? (
+          <img
+            className="persona-portrait"
+            src={landmark.personaIcon}
+            alt={`${landmark.name} persona illustration`}
+          />
+        ) : null}
         <h2 className="landmark-title">
           {landmark.icon ? (
             <img src={landmark.icon} alt="" aria-hidden="true" />
