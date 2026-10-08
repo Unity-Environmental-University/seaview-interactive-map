@@ -328,7 +328,7 @@ button {
   .map-layout {
     display: grid;
     grid-template-rows:
-      minmax(0, min(calc(100cqw * 3145.5 / 4233 / 2), calc((100cqh - var(--layout-gap)) * 0.6)))
+      minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.75)))
       minmax(0, 1fr);
   }
 
@@ -374,9 +374,23 @@ button {
 
 
 
+@media (min-width: 561px) and (max-width: 920px) {
+  .persona-portrait {
+    align-self: flex-start;
+    object-position: left center;
+  }
+}
+
 @media (max-width: 560px) {
   .map-shell {
     padding: 10px;
+  }
+
+   .map-layout {
+    display: grid;
+    grid-template-rows:
+      minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.75)))
+      minmax(0, 1fr);
   }
 
 }
