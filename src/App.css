@@ -289,13 +289,15 @@ button {
 
 .landmark-title {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: 10px;
 }
 
 .landmark-title img {
-  width: 34px;
-  height: 34px;
+  display: block;
+  width: 100%;
+  height: auto;
   flex: 0 0 auto;
   object-fit: contain;
 }
@@ -372,7 +374,19 @@ button {
 
   .landmark-panel {
     padding: 10px;
+  }
 
+  .landmark-content {
+    overflow-y: auto;
+    scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
+    scrollbar-width: thin;
+    padding-right: 11px;
+  }
+
+  .landmark-description {
+    flex: 0 0 auto;
+    overflow-y: visible;
+    padding-right: 0;
   }
 }
 
