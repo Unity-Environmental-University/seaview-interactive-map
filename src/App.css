@@ -260,6 +260,10 @@ button {
   padding-right: 11px;
 }
 
+.landmark-description > p + p {
+  margin-top: 1em;
+}
+
 .landmark-description:focus-visible {
   outline: 3px solid rgba(243, 143, 64, 0.62);
   outline-offset: 3px;
