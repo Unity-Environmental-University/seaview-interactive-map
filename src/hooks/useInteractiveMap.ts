@@ -6,7 +6,8 @@ import {
   useRef,
   useState,
 } from 'react'
-import { getInitialLandmark, getLandmarkBySvgId } from '../data/landmarks'
+import { getLandmarkBySvgId } from '../data/landmarks'
+import type { Landmark } from '../types/landmark'
 
 const MIN_ZOOM = 1
 const MAX_ZOOM = 4
@@ -44,7 +45,7 @@ function getMarkerLabel(target: EventTarget) {
 }
 
 export function useInteractiveMap() {
-  const [selectedLandmark, setSelectedLandmark] = useState(getInitialLandmark)
+  const [selectedLandmark, setSelectedLandmark] = useState<Landmark | null>(null)
   const [hoveredMarker, setHoveredMarker] = useState<ReturnType<typeof getMarkerLabel>>(null)
   const [focusedMarker, setFocusedMarker] = useState<ReturnType<typeof getMarkerLabel>>(null)
   const mapRef = useRef<HTMLDivElement>(null)
@@ -71,7 +72,7 @@ export function useInteractiveMap() {
       element.setAttribute('role', 'button')
       element.setAttribute('tabindex', '0')
       element.setAttribute('aria-label', `Show details for ${landmark.name}`)
-      element.setAttribute('aria-pressed', String(landmark.id === selectedLandmark.id))
+      element.setAttribute('aria-pressed', String(landmark.id === selectedLandmark?.id))
     })
   }, [selectedLandmark])
 
