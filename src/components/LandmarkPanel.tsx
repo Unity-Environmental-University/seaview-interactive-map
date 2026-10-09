@@ -1,10 +1,18 @@
 import type { Landmark } from '../types/landmark'
 
 type LandmarkPanelProps = {
-  landmark: Landmark
+  landmark: Landmark | null
 }
 
 export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
+  if (!landmark) {
+    return (
+      <aside className="landmark-panel" aria-live="polite">
+        <p>Select a landmark to learn about the places and people of Seaview.</p>
+      </aside>
+    )
+  }
+
   return (
     <aside className="landmark-panel" aria-live="polite">
       <p className="panel-label">
