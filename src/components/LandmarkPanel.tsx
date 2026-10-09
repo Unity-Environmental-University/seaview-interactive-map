@@ -24,9 +24,14 @@ export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
           ) : null}
           <span>{landmark.name}</span>
         </h2>
-        <p className="landmark-description" tabIndex={0}>
-          {landmark.description}
-        </p>
+        <div className="landmark-description" tabIndex={0}>
+          {landmark.description
+            .trim()
+            .split(/\r?\n\s*\r?\n/)
+            .map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+        </div>
       </div>
     </aside>
   )
