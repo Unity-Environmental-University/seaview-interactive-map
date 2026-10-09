@@ -1,13 +1,14 @@
 import type { Landmark } from '../types/landmark'
 import { personas } from './personas'
 import { hogFarmDesc, hardwoodForestDesc, ruralHousingDesc, abandonedTobaccoDesc, municipalLandfillDesc, aucummatoRiverDesc, downtownDesc, baptistChurchDesc, wastewaterTreatmentDesc, seaviewCoastlineDesc } from './landmark-descriptions'
+import HogCafo from '../assets/Hog_CAFO.webp'
 
 const landmarks: Landmark[] = [
   {
     id: 'hog-farm',
     name: 'Hog Farm',
     description: hogFarmDesc,
-    image: null,
+    image: HogCafo,
     svgId: 'Hog Farm Marker',
   },
   {
