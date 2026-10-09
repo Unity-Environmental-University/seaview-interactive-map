@@ -79,10 +79,6 @@ const landmarksBySvgId = new Map(
   [...landmarks, ...personas].map((landmark) => [landmark.svgId, landmark]),
 )
 
-export function getInitialLandmark(): Landmark {
-  return landmarks[0]
-}
-
 export function getLandmarkBySvgId(svgId: string): Landmark | undefined {
   return landmarksBySvgId.get(svgId)
 }
