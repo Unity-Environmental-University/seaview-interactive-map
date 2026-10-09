@@ -19,8 +19,8 @@ export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
           />
         ) : null}
         <h2 className="landmark-title">
-          {landmark.icon ? (
-            <img src={landmark.icon} alt="" aria-hidden="true" />
+          {landmark.image ? (
+            <img src={landmark.image} alt="" aria-hidden="true" />
           ) : null}
           <span>{landmark.name}</span>
         </h2>
