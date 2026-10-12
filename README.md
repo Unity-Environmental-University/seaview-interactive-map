@@ -12,7 +12,7 @@ An interactive, illustrated map of Seaview, North Carolina, built for the EVPC49
 
 ## Technology
 
-The app uses React 19, TypeScript, and Vite, with an SVG map and CSS for presentation. Map content and images are bundled with the app; no backend service is required.
+The app uses React 19, TypeScript, and Vite, with an SVG map and CSS. Map content and images are bundled with the app; no backend service is required.
 
 ## Local development
 
