@@ -71,7 +71,7 @@ export const personas: Landmark[] = biographies.map(({ name, description, person
   id: name,
   name,
   description,
-  icon: null,
+  image: null,
   personaIcon,
   svgId: name,
   kind: 'persona',
