@@ -8,7 +8,7 @@ export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
   if (!landmark) {
     return (
       <aside className="landmark-panel" aria-live="polite">
-        <p>Select a landmark to learn about the places and people of Seaview.</p>
+        <p className='landmark-selection-placeholder'>Select a landmark to learn about the places and people of Seaview.</p>
       </aside>
     )
   }
