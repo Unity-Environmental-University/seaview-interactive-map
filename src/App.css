@@ -33,7 +33,6 @@ h1 {
   color: #17231f;
   font-size: 45px;
   line-height: 1.05;
-  font-weight: 600;
 }
 
 .eyebrow,
@@ -63,6 +62,9 @@ button {
 
 .zoom-controls button {
   min-height: 38px;
+  min-width: 38px;
+  padding: 0 12px;
+  font-weight: 750;
   border: 1px solid #b7cbc2;
   border-radius: 6px;
   background: #ffffff;
@@ -73,12 +75,6 @@ button {
     background 150ms ease,
     color 150ms ease,
     transform 150ms ease;
-}
-
-.zoom-controls button {
-  min-width: 38px;
-  padding: 0 12px;
-  font-weight: 750;
 }
 
 .zoom-controls button:hover {
@@ -337,21 +333,12 @@ button {
   }
 
   .map-layout {
-    display: grid;
     grid-template-rows:
       minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.75)))
       minmax(0, 1fr);
   }
 
-  .map-frame,
-  .landmark-panel {
-    height: 100%;
-  }
-
   .map-viewport {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
     overflow-y: scroll;
     scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
     scrollbar-width: thin;
@@ -363,7 +350,6 @@ button {
     width: 100%;
     height: auto;
     translate: none;
-    aspect-ratio: 4233 / 3145.5;
     transform-origin: top center;
   }
 
@@ -383,7 +369,7 @@ button {
 
   .landmark-panel h2 {
     font-size: 24px;
-}
+  }
 
   .landmark-content {
     overflow-y: auto;
@@ -399,8 +385,6 @@ button {
   }
 }
 
-
-
 @media (min-width: 561px) and (max-width: 920px) {
   .persona-portrait {
     align-self: flex-start;
@@ -413,15 +397,13 @@ button {
     padding: 10px;
   }
 
-   .map-layout {
-    display: grid;
+  .map-layout {
     grid-template-rows:
       minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.75)))
       minmax(0, 1fr);
   }
 
   .landmark-panel h2 {
-  font-size: 20px;
-}
-
+    font-size: 20px;
+  }
 }
