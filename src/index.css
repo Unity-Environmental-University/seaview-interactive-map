@@ -1,6 +1,5 @@
 :root {
-
-  --serif:'Source Serif 4', serif;
+  --serif: 'Source Serif 4', serif;
   --heading: 'Alegreya Sans', sans-serif;
 
   font: 18px/145% var(--serif);
@@ -45,13 +44,7 @@ h2 {
 }
 
 h1 {
-  font-size: 100px;
   letter-spacing: -1px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
 }
 
 h2 {
