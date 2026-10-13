@@ -64,6 +64,11 @@ h2 {
   }
 }
 
+::selection {
+  background-color: #ffff00;
+  color: #17231f;
+}
+
 p {
   margin: 0;
 }
