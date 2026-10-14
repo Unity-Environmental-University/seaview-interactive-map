@@ -13,7 +13,7 @@
   height: 100%;
   min-height: 0;
   margin: 0 auto;
-  padding: 24px;
+  padding: 10px 24px 24px 24px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@ h1 {
 
 .eyebrow,
 .panel-label {
-  margin: 0 0 6px;
+  margin: 0;
   color: #17231f;
   font-size: 13px;
   font-weight: 700;
@@ -151,7 +151,7 @@ button {
   inset: 0 auto 0 50%;
   width: auto;
   height: 100%;
-  aspect-ratio: 4233 / 3145.5;
+  aspect-ratio: 4233 / 2648.97;
   translate: -50% 0;
   display: flex;
   align-items: center;
@@ -226,7 +226,7 @@ button {
 }
 
 .landmark-panel h2 {
-  margin: 0 0 10px;
+  margin: 0;
   color: #17231f;
   font-size: 30px;
   line-height: 1.12;
@@ -334,7 +334,7 @@ button {
 
   .map-layout {
     grid-template-rows:
-      minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.75)))
+      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.75)))
       minmax(0, 1fr);
   }
 
@@ -399,7 +399,7 @@ button {
 
   .map-layout {
     grid-template-rows:
-      minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.75)))
+      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.75)))
       minmax(0, 1fr);
   }
 
