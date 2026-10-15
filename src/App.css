@@ -90,6 +90,7 @@ button {
 }
 
 .zoom-controls button:focus-visible,
+.map-viewport:focus-visible,
 .map-art [data-landmark-id]:focus-visible {
   outline: 3px solid rgba(243, 143, 64, 0.62);
   outline-offset: 3px;
@@ -104,6 +105,7 @@ button {
 }
 
 .map-layout {
+  --map-aspect-ratio: calc(4233 / 2974.22);
   --panel-width: 450px;
   --layout-gap: 18px;
   container-type: size;
@@ -134,6 +136,7 @@ button {
   position: relative;
   width: 100%;
   height: 100%;
+  container-type: size;
   flex-shrink: 0;
   box-sizing: border-box;
   min-height: 0;
@@ -155,19 +158,21 @@ button {
 
 .map-stage {
   position: absolute;
-  inset: 0 auto 0 50%;
-  width: auto;
-  height: 100%;
-  aspect-ratio: 4233 / 2648.97;
-  translate: -50% 0;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: calc(100cqh * var(--map-aspect-ratio) * var(--map-zoom));
+  height: calc(100cqh * var(--map-zoom));
+  aspect-ratio: var(--map-aspect-ratio);
   display: flex;
   align-items: center;
   justify-content: center;
   transform-origin: center center;
-  transition: transform 120ms ease-out;
 }
 
 .map-art {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
@@ -345,34 +350,12 @@ button {
   }
 
   .map-layout {
-    grid-template-rows:
-      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.5)))
-      minmax(0, 1fr);
-  }
-
-  .map-viewport {
-    overflow-y: scroll;
-    scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
-    scrollbar-width: thin;
-  }
-
-  .map-stage {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: auto;
-    translate: none;
-    transform-origin: top center;
-  }
-
-  .map-art {
-    position: absolute;
-    inset: 0;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 
   .map-viewport,
   .map-art {
-    touch-action: pan-y;
+    touch-action: none;
   }
 
   .landmark-panel {
@@ -395,12 +378,6 @@ button {
 @media (max-width: 560px) {
   .map-shell {
     padding: 10px;
-  }
-
-  .map-layout {
-    grid-template-rows:
-      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.5)))
-      minmax(0, 1fr);
   }
 
   .landmark-panel h2 {
