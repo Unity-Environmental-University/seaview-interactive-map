@@ -8,7 +8,7 @@ type MapViewportProps = {
   mapRef: Ref<HTMLDivElement>
   mapMarkup: { __html: string }
   viewportHandlers: Pick<HTMLAttributes<HTMLDivElement>,
-    'onWheel' | 'onPointerDown' | 'onPointerMove' | 'onPointerUp' | 'onPointerCancel'>
+    'onPointerDown' | 'onPointerMove' | 'onPointerUp' | 'onPointerCancel' | 'onPointerLeave' | 'onKeyDown'>
   markerHandlers: Pick<HTMLAttributes<HTMLDivElement>,
     'onClick' | 'onKeyDown' | 'onPointerOver' | 'onPointerLeave' | 'onFocus' | 'onBlur'>
 }
@@ -21,11 +21,15 @@ export function MapViewport({
     <div className="map-frame">
       <div
         className={isDraggable ? 'map-viewport is-draggable' : 'map-viewport'}
+        role="region"
+        aria-label="Seaview map. Drag or use arrow keys to pan. Scroll or pinch to zoom."
+        tabIndex={0}
+        style={{ '--map-zoom': zoom } as CSSProperties}
         {...viewportHandlers}
       >
         <div
           className="map-stage"
-          style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+          style={{ transform: `translate(${pan.x}px, ${pan.y}px)` }}
         >
           <div
             ref={mapRef}
