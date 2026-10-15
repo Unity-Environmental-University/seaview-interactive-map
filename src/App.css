@@ -44,6 +44,10 @@ h1 {
   text-transform: uppercase;
 }
 
+.eyebrow {
+  margin: 0;
+}
+
 .panel-label {
     margin: 0 0 10px 0;
 }
