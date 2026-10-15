@@ -37,12 +37,15 @@ h1 {
 
 .eyebrow,
 .panel-label {
-  margin: 0;
   color: #17231f;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.panel-label {
+    margin: 0 0 10px 0;
 }
 
 .zoom-controls {
@@ -237,7 +240,16 @@ button {
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  overflow-y: auto;
+  scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  padding-right: 11px;
   animation: landmark-slide-in 350ms ease-out both;
+}
+
+.landmark-content > * {
+  flex-shrink: 0;
 }
 
 .landmark-selection-placeholder {
@@ -246,28 +258,23 @@ button {
 
 .persona-portrait {
   width: 100%;
-  max-height: 50%;
+  height: clamp(100px, 30dvh, 300px);
   flex-shrink: 0;
   object-fit: contain;
   align-self: center;
 }
 
 .landmark-description {
-  flex: 1;
-  min-height: 0;
-  overflow-y: scroll;
-  scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
-  scrollbar-width: thin;
-  padding-right: 11px;
+  flex: 0 0 auto;
 }
 
 .landmark-description > p + p {
   margin-top: 1em;
 }
 
-.landmark-description:focus-visible {
-  outline: 6px solid rgba(243, 143, 64, 0.62);
-  outline-offset: 3px;
+.landmark-content:focus-visible {
+  outline: 3px solid rgba(243, 143, 64, 0.62);
+  outline-offset: 2px;
 }
 
 @keyframes landmark-slide-in {
@@ -299,6 +306,7 @@ button {
   display: block;
   width: 100%;
   height: auto;
+  max-height: clamp(100px, 30dvh, 300px);
   flex: 0 0 auto;
   object-fit: contain;
 }
@@ -334,7 +342,7 @@ button {
 
   .map-layout {
     grid-template-rows:
-      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.75)))
+      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.5)))
       minmax(0, 1fr);
   }
 
@@ -371,18 +379,6 @@ button {
     font-size: 24px;
   }
 
-  .landmark-content {
-    overflow-y: auto;
-    scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
-    scrollbar-width: thin;
-    padding-right: 11px;
-  }
-
-  .landmark-description {
-    flex: 0 0 auto;
-    overflow-y: visible;
-    padding-right: 0;
-  }
 }
 
 @media (min-width: 561px) and (max-width: 920px) {
@@ -399,11 +395,34 @@ button {
 
   .map-layout {
     grid-template-rows:
-      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.75)))
+      minmax(0, min(calc(100cqw * 2648.97 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.5)))
       minmax(0, 1fr);
   }
 
   .landmark-panel h2 {
     font-size: 20px;
+  }
+}
+
+@media (max-height: 600px) {
+  .map-shell {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .map-header {
+    gap: 10px;
+  }
+
+  .map-header h1 {
+    font-size: 28px;
+  }
+
+  .map-layout {
+    --layout-gap: 10px;
+  }
+
+  .landmark-panel {
+    padding: 10px;
   }
 }
