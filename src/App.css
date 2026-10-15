@@ -13,7 +13,7 @@
   height: 100%;
   min-height: 0;
   margin: 0 auto;
-  padding: 24px;
+  padding: 10px 24px 24px 24px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -37,12 +37,19 @@ h1 {
 
 .eyebrow,
 .panel-label {
-  margin: 0 0 6px;
   color: #17231f;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0;
+}
+
+.panel-label {
+    margin: 0 0 10px 0;
 }
 
 .zoom-controls {
@@ -83,6 +90,7 @@ button {
 }
 
 .zoom-controls button:focus-visible,
+.map-viewport:focus-visible,
 .map-art [data-landmark-id]:focus-visible {
   outline: 3px solid rgba(243, 143, 64, 0.62);
   outline-offset: 3px;
@@ -97,6 +105,7 @@ button {
 }
 
 .map-layout {
+  --map-aspect-ratio: calc(4233 / 2974.22);
   --panel-width: 450px;
   --layout-gap: 18px;
   container-type: size;
@@ -127,6 +136,7 @@ button {
   position: relative;
   width: 100%;
   height: 100%;
+  container-type: size;
   flex-shrink: 0;
   box-sizing: border-box;
   min-height: 0;
@@ -148,19 +158,21 @@ button {
 
 .map-stage {
   position: absolute;
-  inset: 0 auto 0 50%;
-  width: auto;
-  height: 100%;
-  aspect-ratio: 4233 / 3145.5;
-  translate: -50% 0;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: calc(100cqh * var(--map-aspect-ratio) * var(--map-zoom));
+  height: calc(100cqh * var(--map-zoom));
+  aspect-ratio: var(--map-aspect-ratio);
   display: flex;
   align-items: center;
   justify-content: center;
   transform-origin: center center;
-  transition: transform 120ms ease-out;
 }
 
 .map-art {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
@@ -226,7 +238,7 @@ button {
 }
 
 .landmark-panel h2 {
-  margin: 0 0 10px;
+  margin: 0;
   color: #17231f;
   font-size: 30px;
   line-height: 1.12;
@@ -237,7 +249,16 @@ button {
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  overflow-y: auto;
+  scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  padding-right: 11px;
   animation: landmark-slide-in 350ms ease-out both;
+}
+
+.landmark-content > * {
+  flex-shrink: 0;
 }
 
 .landmark-selection-placeholder {
@@ -246,28 +267,23 @@ button {
 
 .persona-portrait {
   width: 100%;
-  max-height: 50%;
+  height: clamp(100px, 30dvh, 300px);
   flex-shrink: 0;
   object-fit: contain;
   align-self: center;
 }
 
 .landmark-description {
-  flex: 1;
-  min-height: 0;
-  overflow-y: scroll;
-  scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
-  scrollbar-width: thin;
-  padding-right: 11px;
+  flex: 0 0 auto;
 }
 
 .landmark-description > p + p {
   margin-top: 1em;
 }
 
-.landmark-description:focus-visible {
-  outline: 6px solid rgba(243, 143, 64, 0.62);
-  outline-offset: 3px;
+.landmark-content:focus-visible {
+  outline: 3px solid rgba(243, 143, 64, 0.62);
+  outline-offset: 2px;
 }
 
 @keyframes landmark-slide-in {
@@ -299,6 +315,7 @@ button {
   display: block;
   width: 100%;
   height: auto;
+  max-height: clamp(100px, 30dvh, 300px);
   flex: 0 0 auto;
   object-fit: contain;
 }
@@ -333,34 +350,12 @@ button {
   }
 
   .map-layout {
-    grid-template-rows:
-      minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.625), calc((100cqh - var(--layout-gap)) * 0.75)))
-      minmax(0, 1fr);
-  }
-
-  .map-viewport {
-    overflow-y: scroll;
-    scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
-    scrollbar-width: thin;
-  }
-
-  .map-stage {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: auto;
-    translate: none;
-    transform-origin: top center;
-  }
-
-  .map-art {
-    position: absolute;
-    inset: 0;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 
   .map-viewport,
   .map-art {
-    touch-action: pan-y;
+    touch-action: none;
   }
 
   .landmark-panel {
@@ -371,18 +366,6 @@ button {
     font-size: 24px;
   }
 
-  .landmark-content {
-    overflow-y: auto;
-    scrollbar-color: rgb(27, 27, 27) rgb(177, 177, 177);
-    scrollbar-width: thin;
-    padding-right: 11px;
-  }
-
-  .landmark-description {
-    flex: 0 0 auto;
-    overflow-y: visible;
-    padding-right: 0;
-  }
 }
 
 @media (min-width: 561px) and (max-width: 920px) {
@@ -397,13 +380,30 @@ button {
     padding: 10px;
   }
 
-  .map-layout {
-    grid-template-rows:
-      minmax(0, min(calc(100cqw * 3145.5 / 4233 * 0.825), calc((100cqh - var(--layout-gap)) * 0.75)))
-      minmax(0, 1fr);
-  }
-
   .landmark-panel h2 {
     font-size: 20px;
+  }
+}
+
+@media (max-height: 600px) {
+  .map-shell {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .map-header {
+    gap: 10px;
+  }
+
+  .map-header h1 {
+    font-size: 28px;
+  }
+
+  .map-layout {
+    --layout-gap: 10px;
+  }
+
+  .landmark-panel {
+    padding: 10px;
   }
 }
