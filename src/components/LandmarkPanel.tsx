@@ -18,7 +18,13 @@ export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
       <p className="panel-label">
         {landmark.kind === 'persona' ? 'Selected Persona' : 'Selected Landmark'}
       </p>
-      <div key={landmark.id} className="landmark-content">
+      <div
+        key={landmark.id}
+        className="landmark-content"
+        role="region"
+        aria-label={`${landmark.name} details`}
+        tabIndex={0}
+      >
         {landmark.kind === 'persona' && landmark.personaIcon ? (
           <img
             className="persona-portrait"
@@ -32,7 +38,7 @@ export function LandmarkPanel({ landmark }: LandmarkPanelProps) {
             <img src={landmark.image} alt="" aria-hidden="true" />
           ) : null}
         </h2>
-        <div className="landmark-description" tabIndex={0}>
+        <div className="landmark-description">
           {landmark.description
             .trim()
             .split(/\r?\n\s*\r?\n/)
