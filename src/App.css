@@ -353,6 +353,11 @@ button {
     grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 
+  .map-stage {
+    width: calc(100cqw * var(--map-zoom));
+    height: calc(100cqw / var(--map-aspect-ratio) * var(--map-zoom));
+  }
+
   .map-viewport,
   .map-art {
     touch-action: none;
@@ -378,6 +383,11 @@ button {
 @media (max-width: 560px) {
   .map-shell {
     padding: 10px;
+  }
+
+  .map-stage {
+    width: calc(100cqh * var(--map-aspect-ratio) * var(--map-zoom));
+    height: calc(100cqh * var(--map-zoom));
   }
 
   .landmark-panel h2 {
