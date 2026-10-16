@@ -68,11 +68,12 @@ export function useInteractiveMap() {
 
   const constrainPan = (nextPan: { x: number; y: number }, nextZoom = zoom) => {
     const element = viewport()
-    const svg = mapRef.current?.querySelector('svg')
-    if (!element || !svg) return nextPan
-    const ratio = svg.viewBox.baseVal.width / svg.viewBox.baseVal.height
-    const limitX = Math.max(0, (element.clientHeight * ratio * nextZoom - element.clientWidth) / 2)
-    const limitY = Math.max(0, (element.clientHeight * nextZoom - element.clientHeight) / 2)
+    const stage = mapRef.current?.closest<HTMLDivElement>('.map-stage')
+    if (!element || !stage) return nextPan
+    // Use the rendered artwork size: its sizing axis changes at each breakpoint.
+    const scale = nextZoom / zoom
+    const limitX = Math.max(0, (stage.offsetWidth * scale - element.clientWidth) / 2)
+    const limitY = Math.max(0, (stage.offsetHeight * scale - element.clientHeight) / 2)
     return { x: clamp(nextPan.x, -limitX, limitX), y: clamp(nextPan.y, -limitY, limitY) }
   }
 
@@ -110,6 +111,12 @@ export function useInteractiveMap() {
     if (!element) return
     const handleWheel = (event: WheelEvent) => {
       event.preventDefault()
+      const horizontalDelta = event.deltaX || (event.shiftKey ? event.deltaY : 0)
+      if (window.matchMedia('(max-width: 920px)').matches && horizontalDelta !== 0 && !event.ctrlKey && !event.metaKey) {
+        const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? element.clientWidth : 1
+        setPan((current) => constrainPan({ x: current.x - horizontalDelta * unit, y: current.y }))
+        return
+      }
       const rect = element.getBoundingClientRect()
       const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? element.clientHeight : 1)
       setZoomLevel(zoom * Math.exp(-delta * 0.002), {
