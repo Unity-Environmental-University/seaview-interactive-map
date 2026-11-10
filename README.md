@@ -43,3 +43,8 @@ Open the local URL printed by Vite in your browser.
 - `src/data/map.ts`: loads the bundled SVG map.
 - `src/assets/`: map artwork, persona portraits, and landmark imagery.
 
+## Continuous integration and deployment
+
+- `.github/workflows/ci.yml` runs `npm run lint` and `npm run build` on every pull request into `main` or `production` and on every push to those branches.
+- Open pull requests against `main`. Merging into `main` does not deploy.
+- The live site deploys from the `production` branch. `.github/workflows/deploy.yml` runs on each push to `production` (or a manual run from `production`), lints and builds the app in an unprivileged job, then publishes `dist/` to GitHub Pages in a separate job. To release, fast-forward `production` to `main` after CI passes on `main`.
